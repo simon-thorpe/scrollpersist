@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/1.4.11/jquery.scrollTo.min.js"></script>
+	<script src="scrollpersist.js" data-delay="1000"></script>
+</head>
+<body>
+	<ul></ul>
+	<script>
+		(function(){
+			var ul=$('ul');
+			for(var i=1;i<=500;i++){
+				var li=$('<li/>').text('Item '+i);
+				ul.append(li);
+			}
+		})();
+	</script>
+</body>
+</html>
