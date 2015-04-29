@@ -1,10 +1,10 @@
 /*
- * scrollpersist v1.0
+ * scrollpersist v1.1.0
  * 
  * https://github.com/simon-thorpe/scrollpersist/
  * 
  * Include this script on any page that requires persistant scrolling when the user returns to it:
- * <script src="scrollpersist.js" data-delay="1000"></script>
+ * <script src="scrollpersist.js" data-auto="1000"></script>
  * 
  * The data-delay attribute is optional.
  * 
@@ -15,7 +15,11 @@
 (function(){
 	var key='__scrollpersist_'+btoa(window.location.href);
 	var currentScript=document.currentScript;
-	var delay=parseInt(currentScript.getAttribute('data-delay'));
+	var auto=currentScript.getAttribute('data-auto')!=='no';
+	var delay=null;
+	if(auto){
+		delay=parseInt(currentScript.getAttribute('data-auto'));
+	}
 	var scroll=function(){
 		var oldTop=localStorage[key+'_top'];
 		var oldLeft=localStorage[key+'_left'];
@@ -35,12 +39,17 @@
 		localStorage[key+'_top']=top;
 		localStorage[key+'_left']=left;
 	});
-	document.addEventListener('DOMContentLoaded',function(){
-		if(delay){
-			setTimeout(scroll,delay);
-		}
-		else{
-			scroll();
-		}
-	});
+	if(auto){
+		document.addEventListener('DOMContentLoaded',function(){
+			if(delay){
+				setTimeout(scroll,delay);
+			}
+			else{
+				scroll();
+			}
+		});
+	}
+	
+	// Global function.
+	window.scrollpersist=scroll;
 })();
