@@ -1,5 +1,5 @@
 /*
- * scrollpersist v1.1.0
+ * scrollpersist v1.2.0
  * 
  * https://github.com/simon-thorpe/scrollpersist/
  * 
